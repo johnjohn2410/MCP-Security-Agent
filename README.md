@@ -5,32 +5,43 @@ An intelligent, agentic AI security scanner built on the Model Context Protocol 
 ## 2-Minute Quickstart
 
 ### 1. Install & Setup
-```bash
-# Clone and install
-git clone https://github.com/your-org/mcp-security-agent.git
-cd mcp-security-agent
-npm install
-npm run build
 
-# Configure environment
-cp env.example .env
-# Edit .env with your OpenAI API key (optional, for AI analysis)
+**Option A: npm (Recommended)**
+```bash
+# Install globally
+npm install -g mcp-security-agent
+
+# Or install locally
+npm install mcp-security-agent
+```
+
+**Option B: Docker**
+```bash
+# Run with Docker
+docker run ghcr.io/johnjohn2410/mcp-security-agent scan .
+```
+
+**Option C: Binary**
+```bash
+# Download from GitHub Releases
+# https://github.com/johnjohn2410/MCP-Security-Agent/releases
+./mcp-security-agent scan .
 ```
 
 ### 2. Run Your First Scan
 ```bash
 # Scan a directory for vulnerabilities
-npm start scan ./your-project
+mcp-security-agent scan ./your-project
 
 # Or use the CLI directly
-node dist/index.js scan ./your-project --type comprehensive
+mcp-security-agent scan ./your-project --type comprehensive
 ```
 
 ### 3. View Results
 ```bash
 # Results are displayed in JSON format
 # For HTML report, use:
-node dist/index.js scan ./your-project --format html
+mcp-security-agent scan ./your-project --format html
 ```
 
 **That's it!** Your security scan is complete. The agent will detect:
@@ -78,13 +89,50 @@ node dist/index.js scan ./your-project --format html
 ## Installation
 
 ### Prerequisites
-- Node.js 18.0.0 or higher
-- npm or yarn
+- Node.js 18.0.0 or higher (for npm installation)
+- Docker (for containerized installation)
+- Or download pre-built binaries
 
-### Quick Install
+### Installation Methods
+
+#### npm (Recommended for Node.js/TypeScript projects)
+```bash
+# Global installation (CLI tool)
+npm install -g mcp-security-agent
+
+# Local installation (library)
+npm install mcp-security-agent
+```
+
+#### Docker (Recommended for DevOps/Security teams)
+```bash
+# Pull and run
+docker run ghcr.io/johnjohn2410/mcp-security-agent scan .
+
+# Or build locally
+docker build -t mcp-security-agent .
+docker run mcp-security-agent scan .
+```
+
+#### Binary Releases (For CI/CD and non-Node environments)
+Download pre-built binaries from [GitHub Releases](https://github.com/johnjohn2410/MCP-Security-Agent/releases):
+
+- **Linux (x64)**: `mcp-security-agent-linux`
+- **macOS (x64)**: `mcp-security-agent-macos`
+- **Windows (x64)**: `mcp-security-agent-win.exe`
+- **Linux (ARM64)**: `mcp-security-agent-linux-arm64`
+- **macOS (ARM64)**: `mcp-security-agent-macos-arm64`
+
+```bash
+# Make executable and run
+chmod +x mcp-security-agent-linux
+./mcp-security-agent-linux scan .
+```
+
+### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/mcp-security-agent.git
+git clone https://github.com/johnjohn2410/mcp-security-agent.git
 cd mcp-security-agent
 
 # Install dependencies
@@ -130,19 +178,19 @@ BLOCKED_PATTERNS=password,secret,key,token
 
 ```bash
 # Comprehensive security scan
-npm start scan ./path/to/project --type comprehensive
+mcp-security-agent scan ./path/to/project --type comprehensive
 
 # Quick scan (secrets and dependencies only)
-npm start scan ./path/to/project --type quick
+mcp-security-agent scan ./path/to/project --type quick
 
 # Targeted scan (specific vulnerability types)
-npm start scan ./path/to/project --targets code,secrets
+mcp-security-agent scan ./path/to/project --targets code,secrets
 
 # Generate HTML report
-npm start scan ./path/to/project --format html
+mcp-security-agent scan ./path/to/project --format html
 
 # Start MCP server for AI assistant integration
-npm start server
+mcp-security-agent server
 ```
 
 ### Available Commands
@@ -173,7 +221,7 @@ report <path> --format html   # Generate security report
 ### Programmatic Usage
 
 ```typescript
-import { SecurityAgent } from './dist/agent/SecurityAgent.js';
+import { SecurityAgent } from 'mcp-security-agent';
 
 const agent = new SecurityAgent({
   path: './my-project',
@@ -191,10 +239,23 @@ The agent can be used as an MCP server for AI assistant integration:
 
 ```bash
 # Start MCP server
-npm start server
+mcp-security-agent server
 
 # Connect from MCP client
 # The agent will be available as security scanning tools
+```
+
+### Docker Usage
+
+```bash
+# Scan a local directory
+docker run -v $(pwd):/workspace ghcr.io/johnjohn2410/mcp-security-agent scan /workspace
+
+# Scan with custom configuration
+docker run -v $(pwd):/workspace -e SCAN_TYPE=comprehensive ghcr.io/johnjohn2410/mcp-security-agent scan /workspace
+
+# Run as MCP server
+docker run -p 3000:3000 ghcr.io/johnjohn2410/mcp-security-agent server
 ```
 
 ## Output Formats
@@ -228,7 +289,7 @@ The agent supports multiple output formats:
 npm test
 
 # Test with example vulnerable code
-npm start scan ./examples --type comprehensive
+mcp-security-agent scan ./examples --type comprehensive
 ```
 
 ## Contributing
@@ -257,8 +318,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 - **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/your-org/mcp-security-agent/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-org/mcp-security-agent/discussions)
+- **Issues**: [GitHub Issues](https://github.com/johnjohn2410/MCP-Security-Agent/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/johnjohn2410/MCP-Security-Agent/discussions)
 - **Security**: [SECURITY.md](SECURITY.md)
 
 ## Roadmap

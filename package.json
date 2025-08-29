@@ -4,6 +4,19 @@
   "description": "An MCP-based security scanner and agentic AI for vulnerability detection",
   "main": "dist/index.js",
   "type": "module",
+  "bin": {
+    "mcp-security-agent": "dist/index.js",
+    "mcp-scan": "dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
@@ -11,7 +24,9 @@
     "test": "jest",
     "lint": "eslint src/**/*.ts",
     "security-scan": "node dist/scanner/securityScanner.js",
-    "mcp-server": "node dist/mcp/server.js"
+    "mcp-server": "node dist/mcp/server.js",
+    "prepublishOnly": "npm run build",
+    "prepack": "npm run build"
   },
   "keywords": [
     "mcp",
@@ -19,10 +34,40 @@
     "vulnerability",
     "scanner",
     "ai",
-    "agent"
+    "agent",
+    "model-context-protocol",
+    "security-scanning",
+    "code-analysis",
+    "dependency-scanning",
+    "secret-detection",
+    "configuration-security"
   ],
-  "author": "MCP Security Agent",
+  "author": {
+    "name": "MCP Security Agent",
+    "email": "security@mcp-security-agent.org",
+    "url": "https://github.com/johnjohn2410/MCP-Security-Agent"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnjohn2410/MCP-Security-Agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johnjohn2410/MCP-Security-Agent/issues"
+  },
+  "homepage": "https://github.com/johnjohn2410/MCP-Security-Agent#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^0.4.0",
     "axios": "^1.6.0",
@@ -56,8 +101,5 @@
     "jest": "^29.7.0",
     "tsx": "^4.1.4",
     "typescript": "^5.2.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   }
 }
