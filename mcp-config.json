@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "security-agent": {
+      "command": "node",
+      "args": ["dist/index.js", "server"],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
