@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCP Security Agent - Intelligent Security Scanner</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://johnjohn2410.github.io/MCP-Security-Agent/">
+    <meta property="og:title" content="MCP Security Agent - Intelligent Security Scanner">
+    <meta property="og:description" content="An intelligent, agentic AI security scanner built on the Model Context Protocol (MCP) that actively scans for vulnerabilities and provides automated security analysis.">
+    <meta property="og:image" content="https://johnjohn2410.github.io/MCP-Security-Agent/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://johnjohn2410.github.io/MCP-Security-Agent/">
+    <meta property="twitter:title" content="MCP Security Agent - Intelligent Security Scanner">
+    <meta property="twitter:description" content="An intelligent, agentic AI security scanner built on the Model Context Protocol (MCP) that actively scans for vulnerabilities and provides automated security analysis.">
+    <meta property="twitter:image" content="https://johnjohn2410.github.io/MCP-Security-Agent/og-image.png">
     <style>
         * {
             margin: 0;
@@ -197,6 +211,30 @@
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 0.9rem;
             overflow-x: auto;
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .copy-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .copy-button.copied {
+            background-color: #28a745;
+            color: #ffffff;
         }
 
         /* Demo */
@@ -371,6 +409,26 @@
             }
         }
     </style>
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Find the button that was clicked
+                const buttons = document.querySelectorAll('.copy-button');
+                buttons.forEach(button => {
+                    if (button.textContent === 'Copy') {
+                        button.textContent = 'Copied!';
+                        button.classList.add('copied');
+                        setTimeout(() => {
+                            button.textContent = 'Copy';
+                            button.classList.remove('copied');
+                        }, 2000);
+                    }
+                });
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -422,17 +480,26 @@
                 <div class="install-method">
                     <h4>npm (Recommended)</h4>
                     <p>For Node.js/TypeScript projects</p>
-                    <div class="code-block">npm install -g mcp-security-agent</div>
+                    <div class="code-block">
+                        npm install -g mcp-security-agent
+                        <button class="copy-button" onclick="copyToClipboard('npm install -g mcp-security-agent')">Copy</button>
+                    </div>
                 </div>
                 <div class="install-method">
                     <h4>Docker</h4>
                     <p>For containerized environments</p>
-                    <div class="code-block">docker run ghcr.io/johnjohn2410/mcp-security-agent scan .</div>
+                    <div class="code-block">
+                        docker run ghcr.io/johnjohn2410/mcp-security-agent scan .
+                        <button class="copy-button" onclick="copyToClipboard('docker run ghcr.io/johnjohn2410/mcp-security-agent scan .')">Copy</button>
+                    </div>
                 </div>
                 <div class="install-method">
                     <h4>Binary</h4>
                     <p>For CI/CD and non-Node environments</p>
-                    <div class="code-block"># Download from GitHub Releases<br>./mcp-security-agent scan .</div>
+                    <div class="code-block">
+                        # Download from GitHub Releases<br>./mcp-security-agent scan .
+                        <button class="copy-button" onclick="copyToClipboard('./mcp-security-agent scan .')">Copy</button>
+                    </div>
                 </div>
             </div>
         </div>

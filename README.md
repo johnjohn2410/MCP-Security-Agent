@@ -6,6 +6,8 @@
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/johnjohn2410/MCP-Security-Agent)](https://github.com/johnjohn2410/MCP-Security-Agent/releases)
 
+> **Topics**: `mcp` `security` `ai-security` `mcp-security` `mcp-server` `agentic-ai` `vulnerability-scanner` `code-analysis` `dependency-scanning` `secret-detection`
+
 An intelligent, agentic AI security scanner built on the Model Context Protocol (MCP) that actively scans for vulnerabilities and provides automated security analysis.
 
 ## 2-Minute Quickstart
@@ -259,6 +261,49 @@ mcp-security-agent server
 # The agent will be available as security scanning tools
 ```
 
+### CI/CD Integration
+
+#### GitHub Actions with SARIF
+
+```yaml
+name: Security Scan
+on: [push, pull_request]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install MCP Security Agent
+        run: npm install -g mcp-security-agent
+      - name: Run Security Scan
+        run: mcp-security-agent scan . --format sarif --output-file security-results.sarif
+      - name: Upload SARIF results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: security-results.sarif
+```
+
+#### MCP Client Configuration
+
+```json
+{
+  "mcpServers": {
+    "mcp-security-agent": {
+      "command": "mcp-security-agent",
+      "args": ["server"],
+      "env": {
+        "OPENAI_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
 ### Docker Usage
 
 ```bash
@@ -283,6 +328,12 @@ The agent supports multiple output formats:
 - **SARIF**: Standard format for CI/CD integration
 
 ## Security Features
+
+### Trust & Compliance
+- **SBOM Generation**: Automatic Software Bill of Materials in CycloneDX/SPDX format
+- **Signed Releases**: GitHub releases with signed artifacts and provenance
+- **Audit Trail**: Complete audit logging with tamper-evident hashes
+- **Compliance Ready**: SOC 2, ISO 27001, PCI DSS compliance mappings
 
 ### Privacy & Data Protection
 - **Data Redaction**: Automatically redacts sensitive information
