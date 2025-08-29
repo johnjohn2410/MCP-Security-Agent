@@ -1,5 +1,6 @@
 # MCP Security Agent
 
+[![npm version](https://badge.fury.io/js/mcp-security-agent.svg)](https://badge.fury.io/js/mcp-security-agent)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)](https://nodejs.org/)
