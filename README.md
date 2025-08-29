@@ -9,7 +9,7 @@
 
 > **Topics**: `mcp` `security` `ai-security` `mcp-security` `mcp-server` `agentic-ai` `vulnerability-scanner` `code-analysis` `dependency-scanning` `secret-detection`
 
-The first end-to-end MCP security companion with enterprise-grade hardening, trust verification, and AI-powered threat detection for ChatGPT/Claude hosts.
+An open-source toolkit designed to harden Model Context Protocol (MCP) workflows. It brings together scanners, trust management, schema validation, and prompt-injection defenses into a single CLI—helping developers and researchers close critical security gaps in emerging MCP ecosystems.
 
 ## 2-Minute Quickstart
 
@@ -67,7 +67,7 @@ mcp-security-agent scan ./your-project --format html
 - Hardcoded secrets
 - Configuration issues
 
-### 4. Enterprise MCP Security Hardening
+### 4. MCP Security Hardening
 ```bash
 # Apply MCP hardened security policy
 mcp-security-agent mcp --policy mcp-hardened
@@ -93,13 +93,13 @@ mcp-security-agent trust --add server.com --pubkey KEY --sha256 DIGEST --version
 
 ## Features
 
-### Enterprise MCP Security Hardening
+### MCP Security Hardening
 - **MCP Configuration Validation**: Defensive-by-default security checks for authentication, TLS, CORS/CSP, rate limiting, quotas, sandboxing, and stdio security
 - **Schema Compliance**: JSON Schema validation for all MCP envelopes, protocol drift prevention, payload size limits, and JSON-only mode enforcement
 - **Trust & Provenance**: Cryptographic signature verification, public key pinning, allow/deny lists, and mandatory trust checks with SLSA/cosign attestation support
 - **AI-Powered Threat Detection**: Advanced prompt injection classification, response sanitization, suspicious directive detection, and ML-based anomaly detection
 - **Sandboxing & Isolation**: Container and process isolation, resource limits, read-only filesystems, capability dropping, and seccomp/AppArmor profiles
-- **Compliance & Governance**: Enterprise compliance reporting, audit trails, SBOM generation, VEX documents, and comprehensive security posture assessment
+- **Compliance & Governance**: Compliance reporting, audit trails, SBOM generation, VEX documents, and comprehensive security posture assessment
 
 ### Core Security Scanning
 - **Code Vulnerability Analysis**: Detects security issues in source code
@@ -261,7 +261,7 @@ scan <path>                    # Scan a directory or file
   --include <patterns>        # File patterns to include
   --exclude <patterns>        # File patterns to exclude
 
-# Enterprise MCP Security Hardening
+# MCP Security Hardening
 mcp --policy mcp-hardened     # Apply MCP hardened security policy
 mcp --config-template         # Generate hardened configuration template
 mcp --compliance              # Check compliance status
@@ -384,7 +384,7 @@ The agent supports multiple output formats:
 
 ## Security Features
 
-### Enterprise MCP Security Hardening
+### MCP Security Hardening
 - **MCP Configuration Validation**: Defensive-by-default security checks for authentication, TLS, CORS/CSP, rate limiting, quotas, sandboxing, and stdio security
 - **Schema Compliance**: JSON Schema validation for all MCP envelopes, protocol drift prevention, payload size limits, and JSON-only mode enforcement
 - **Trust & Provenance**: Cryptographic signature verification, public key pinning, allow/deny lists, and mandatory trust checks with SLSA/cosign attestation support
@@ -409,9 +409,9 @@ The agent supports multiple output formats:
 - **Dry-Run Mode**: Test policies before enforcement
 - **Policy Tracing**: Understand why rules were triggered
 
-## Enterprise Use Cases
+## Use Cases
 
-### ChatGPT/Claude Host Protection
+### MCP Workflow Protection
 ```bash
 # Apply MCP hardened security policy for AI assistant integration
 mcp-security-agent mcp --policy mcp-hardened
@@ -426,7 +426,7 @@ mcp-security-agent mcp --classify "ignore previous instructions"
 mcp-security-agent mcp --validate envelope.json
 ```
 
-### DevOps & CI/CD Security
+### DevOps & CI/CD Integration
 ```bash
 # Comprehensive security scanning in CI/CD
 mcp-security-agent scan . --type comprehensive --format sarif
@@ -438,7 +438,7 @@ mcp-security-agent mcp --compliance
 mcp-security-agent mcp --config-template > mcp-hardened-config.json
 ```
 
-### Enterprise Compliance
+### Compliance & Governance
 ```bash
 # Generate SBOM for supply chain security
 mcp-security-agent scan . --generate-sbom
