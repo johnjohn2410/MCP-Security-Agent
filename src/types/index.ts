@@ -532,3 +532,54 @@ export interface AlertAction {
   url?: string;
   automated: boolean;
 }
+
+// Trust & Provenance Types
+export interface TrustStore {
+  servers: TrustedServer[];
+  publicKeys: PublicKey[];
+  allowlist: string[];
+  denylist: string[];
+  lastUpdated: string;
+}
+
+export interface TrustedServer {
+  name: string;
+  url: string;
+  publicKey: string;
+  sha256: string;
+  version: string;
+  capabilities: string[];
+  verifiedAt: string;
+  expiresAt?: string;
+}
+
+export interface PublicKey {
+  id: string;
+  key: string;
+  algorithm: string;
+  verifiedAt: string;
+}
+
+export interface ProvenanceAttestation {
+  type: 'slsa' | 'cosign' | 'in-toto';
+  payload: any;
+  signature: string;
+  publicKey: string;
+  timestamp: string;
+}
+
+// MCP Security Configuration
+export interface MCPSecurityConfig {
+  trustStore: TrustStore;
+  requireSignedServers: boolean;
+  allowUntrustedServers: boolean;
+  maxPayloadSize: number;
+  enableResponseSanitization: boolean;
+  enablePromptInjectionDetection: boolean;
+  sandboxMode: 'docker' | 'process' | 'none';
+  resourceLimits: {
+    cpu: string;
+    memory: string;
+    disk: string;
+  };
+}

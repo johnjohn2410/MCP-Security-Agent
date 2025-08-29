@@ -9,6 +9,8 @@ import { ReportGenerator } from '../utils/ReportGenerator.js';
 import { DataHandler } from '../utils/DataHandler.js';
 import { SBOMGenerator } from '../utils/SBOMGenerator.js';
 import { VEXGenerator } from '../utils/VEXGenerator.js';
+import { TrustManager } from '../utils/TrustManager.js';
+import { ResponseSanitizer, SanitizationConfig } from '../utils/ResponseSanitizer.js';
 import { Logger } from '../utils/Logger.js';
 import { randomUUID, createHash } from 'node:crypto';
 import * as path from 'node:path';
@@ -26,6 +28,8 @@ export class SecurityAgent {
   private dataHandler: DataHandler;
   private sbomGenerator: SBOMGenerator;
   private vexGenerator: VEXGenerator;
+  private trustManager: TrustManager;
+  private responseSanitizer: ResponseSanitizer;
   private scanId: string;
   private sessionId: string;
   private startTime: number;
@@ -64,6 +68,16 @@ export class SecurityAgent {
     this.reportGenerator = new ReportGenerator(this.logger);
     this.sbomGenerator = new SBOMGenerator(this.logger);
     this.vexGenerator = new VEXGenerator(this.logger);
+
+    // Initialize trust and security components
+    this.trustManager = new TrustManager(this.logger);
+    this.responseSanitizer = new ResponseSanitizer(this.logger, {
+      maxPayloadSize: 1024 * 1024, // 1MB
+      enablePromptInjectionDetection: true,
+      stripSuspiciousDirectives: true,
+      enforceJsonOnly: true,
+      allowedContentTypes: ['application/json', 'text/plain']
+    });
 
     this.logger.info('Security Agent initialized', {
       scanId: this.scanId,
@@ -504,5 +518,58 @@ export class SecurityAgent {
   async cleanup(): Promise<void> {
     this.dataHandler.cleanupOldAuditLogs();
     this.logger.info('Security Agent cleanup completed');
+  }
+
+  /**
+   * Trust management methods
+   */
+  async addTrustedServer(
+    name: string,
+    url: string,
+    publicKey: string,
+    sha256: string,
+    version: string,
+    capabilities: string[] = []
+  ): Promise<void> {
+    return this.trustManager.addTrustedServer(name, url, publicKey, sha256, version, capabilities);
+  }
+
+  async removeTrustedServer(name: string): Promise<void> {
+    return this.trustManager.removeTrustedServer(name);
+  }
+
+  isServerTrusted(name: string, url: string): boolean {
+    return this.trustManager.isServerTrusted(name, url);
+  }
+
+  async verifyServerProvenance(serverName: string, attestation: any): Promise<boolean> {
+    return this.trustManager.verifyServerProvenance(serverName, attestation);
+  }
+
+  addToAllowlist(server: string): void {
+    this.trustManager.addToAllowlist(server);
+  }
+
+  addToDenylist(server: string): void {
+    this.trustManager.addToDenylist(server);
+  }
+
+  getTrustStore(): any {
+    return this.trustManager.getTrustStore();
+  }
+
+  /**
+   * Response sanitization methods
+   */
+  sanitizeResponse(payload: any): { sanitized: any; warnings: string[] } {
+    return this.responseSanitizer.sanitizeResponse(payload);
+  }
+
+  validateContentType(contentType: string): boolean {
+    return this.responseSanitizer.validateContentType(contentType);
+  }
+
+  getSanitizationStats(): { totalSanitized: number; warningsGenerated: number } {
+    return this.responseSanitizer.getStats();
   }
 }

@@ -240,4 +240,63 @@ program
     }
   });
 
+// Trust management command
+program
+  .command('trust')
+  .description('Manage MCP server trust store')
+  .option('-a, --add <server>', 'Add trusted server')
+  .option('-r, --remove <server>', 'Remove trusted server')
+  .option('-l, --list', 'List trusted servers')
+  .option('-k, --pubkey <key>', 'Public key for server')
+  .option('-s, --sha256 <digest>', 'SHA256 digest for server')
+  .option('-v, --version <version>', 'Server version')
+  .option('--allowlist <server>', 'Add server to allowlist')
+  .option('--denylist <server>', 'Add server to denylist')
+  .action(async (options) => {
+    try {
+      logger.info('Trust management', { options });
+
+      const cfg = buildConfig({});
+      const agent = new SecurityAgent(cfg);
+      
+      if (options.list) {
+        const trustStore = agent.getTrustStore();
+        console.log('Trusted Servers:');
+        trustStore.servers.forEach(server => {
+          console.log(`  ${server.name} (${server.url}) - v${server.version}`);
+        });
+        console.log('\nAllowlist:', trustStore.allowlist);
+        console.log('Denylist:', trustStore.denylist);
+      } else if (options.add) {
+        if (!options.pubkey || !options.sha256 || !options.version) {
+          console.error('Error: --pubkey, --sha256, and --version are required for adding servers');
+          process.exit(1);
+        }
+        await agent.addTrustedServer(
+          options.add,
+          `https://${options.add}`,
+          options.pubkey,
+          options.sha256,
+          options.version
+        );
+        console.log(`Added trusted server: ${options.add}`);
+      } else if (options.remove) {
+        await agent.removeTrustedServer(options.remove);
+        console.log(`Removed trusted server: ${options.remove}`);
+      } else if (options.allowlist) {
+        agent.addToAllowlist(options.allowlist);
+        console.log(`Added to allowlist: ${options.allowlist}`);
+      } else if (options.denylist) {
+        agent.addToDenylist(options.denylist);
+        console.log(`Added to denylist: ${options.denylist}`);
+      } else {
+        console.log('Use --help for trust management options');
+      }
+
+    } catch (error) {
+      logger.error('Trust operation failed', error as Error);
+      process.exit(1);
+    }
+  });
+
 program.parse();
