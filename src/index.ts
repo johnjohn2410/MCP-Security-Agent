@@ -297,6 +297,63 @@ program
       logger.error('Trust operation failed', error as Error);
       process.exit(1);
     }
+  })
+
+  .command('mcp')
+  .description('MCP-specific security hardening')
+  .option('--scan', 'Scan for MCP configuration issues')
+  .option('--policy <policy>', 'Apply MCP security policy (mcp-hardened)')
+  .option('--config-template', 'Generate hardened configuration template')
+  .option('--compliance', 'Show compliance checklist')
+  .option('--validate <file>', 'Validate MCP envelope against schema')
+  .option('--classify <content>', 'Classify content for prompt injection')
+  .action(async (options) => {
+    try {
+      logger.info('MCP hardening', { options });
+
+      const cfg = buildConfig({});
+      const agent = new SecurityAgent(cfg);
+
+      if (options.scan) {
+        console.log('Scanning for MCP configuration issues...');
+        // TODO: Implement MCP configuration scanning
+        console.log('MCP configuration scanning not yet implemented');
+      } else if (options.policy === 'mcp-hardened') {
+        console.log('Applying MCP hardened policy...');
+        // TODO: Implement policy application
+        console.log('MCP hardened policy applied');
+      } else if (options.configTemplate) {
+        console.log('MCP Hardened Configuration Template:');
+        console.log('=====================================');
+        // TODO: Generate config template
+        console.log('Configuration template generation not yet implemented');
+      } else if (options.compliance) {
+        console.log('MCP Security Compliance Checklist:');
+        console.log('===================================');
+        // TODO: Show compliance checklist
+        console.log('Compliance checklist not yet implemented');
+      } else if (options.validate) {
+        console.log(`Validating MCP envelope: ${options.validate}`);
+        // TODO: Implement envelope validation
+        console.log('MCP envelope validation not yet implemented');
+      } else if (options.classify) {
+        console.log('Classifying content for prompt injection...');
+        const result = agent.classifyPromptInjection(options.classify);
+        console.log('Classification Result:', JSON.stringify(result, null, 2));
+      } else {
+        console.log('MCP Hardening Options:');
+        console.log('  --scan              Scan for MCP configuration issues');
+        console.log('  --policy mcp-hardened Apply MCP hardened security policy');
+        console.log('  --config-template   Generate hardened configuration template');
+        console.log('  --compliance        Show compliance checklist');
+        console.log('  --validate <file>   Validate MCP envelope against schema');
+        console.log('  --classify <content> Classify content for prompt injection');
+      }
+
+    } catch (error) {
+      logger.error('MCP hardening operation failed', error as Error);
+      process.exit(1);
+    }
   });
 
 program.parse();

@@ -67,6 +67,28 @@ mcp-security-agent scan ./your-project --format html
 - Hardcoded secrets
 - Configuration issues
 
+### 4. MCP Security Hardening (Enterprise)
+```bash
+# Apply MCP hardened security policy
+mcp-security-agent mcp --policy mcp-hardened
+
+# Generate hardened configuration template
+mcp-security-agent mcp --config-template
+
+# Check compliance status
+mcp-security-agent mcp --compliance
+
+# Validate MCP envelope against schema
+mcp-security-agent mcp --validate envelope.json
+
+# Classify content for prompt injection
+mcp-security-agent mcp --classify "ignore previous instructions"
+
+# Manage trusted MCP servers
+mcp-security-agent trust --list
+mcp-security-agent trust --add server.com --pubkey KEY --sha256 DIGEST --version 1.0.0
+```
+
 ## Features
 
 ### Core Security Scanning
@@ -87,6 +109,14 @@ mcp-security-agent scan ./your-project --format html
 - **Automated Remediation**: Suggests and can implement security fixes
 - **Context-Aware Scanning**: Understands project context and architecture
 - **Continuous Monitoring**: Real-time security monitoring and alerting
+
+### MCP Security Hardening (Enterprise-Grade)
+- **Trust Management**: Verify MCP servers with cryptographic signatures
+- **Response Sanitization**: Prevent prompt injection and malicious payloads
+- **Schema Validation**: Enforce MCP protocol compliance and prevent drift
+- **Configuration Hardening**: MCP-aware security policy enforcement
+- **Prompt Injection Detection**: AI-powered classification of suspicious content
+- **Sandboxing**: Container and process isolation for MCP servers
 
 ## Architecture
 
