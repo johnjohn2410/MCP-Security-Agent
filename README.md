@@ -1,5 +1,13 @@
 # MCP Security Agent
 
+[![npm version](https://badge.fury.io/js/mcp-security-agent.svg)](https://badge.fury.io/js/mcp-security-agent)
+[![Docker Pulls](https://img.shields.io/docker/pulls/johnjohn2410/mcp-security-agent)](https://hub.docker.com/r/johnjohn2410/mcp-security-agent)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/johnjohn2410/MCP-Security-Agent)](https://github.com/johnjohn2410/MCP-Security-Agent/releases)
+[![CI Status](https://github.com/johnjohn2410/MCP-Security-Agent/workflows/Release/badge.svg)](https://github.com/johnjohn2410/MCP-Security-Agent/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)](https://nodejs.org/)
+
 An intelligent, agentic AI security scanner built on the Model Context Protocol (MCP) that actively scans for vulnerabilities and provides automated security analysis.
 
 ## 2-Minute Quickstart

@@ -50,7 +50,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnjohn2410/MCP-Security-Agent.git"
+    "url": "git+https://github.com/johnjohn2410/MCP-Security-Agent.git"
   },
   "bugs": {
     "url": "https://github.com/johnjohn2410/MCP-Security-Agent/issues"
