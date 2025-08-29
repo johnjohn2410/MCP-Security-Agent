@@ -137,3 +137,6 @@ docs/build/
 
 # Local development
 .local/
+
+# Keep scripts directory
+!scripts/
