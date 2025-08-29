@@ -328,6 +328,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Documentation**: [docs/](docs/)
 - **Issues**: [GitHub Issues](https://github.com/johnjohn2410/MCP-Security-Agent/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/johnjohn2410/MCP-Security-Agent/discussions)
+- **Contact**: jross3511@yahoo.com
 - **Security**: [SECURITY.md](SECURITY.md)
 
 ## Roadmap

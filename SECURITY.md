@@ -15,7 +15,7 @@ We take the security of MCP Security Agent seriously. If you believe you have fo
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Instead, please report them via email to security@mcp-security-agent.org.
+Instead, please report them via email to jross3511@yahoo.com.
 
 You should receive a response within 48 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
 

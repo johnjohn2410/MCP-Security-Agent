@@ -205,7 +205,7 @@ User Input → Validation → Scanner → Analysis → Report Generation → Out
 
 For security issues or questions about this threat model:
 
-- **Security Team**: security@mcp-security-agent.org
+- **Security Team**: jross3511@yahoo.com
 - **GitHub Issues**: [Security Issues](https://github.com/johnjohn2410/MCP-Security-Agent/issues)
 - **Responsible Disclosure**: [SECURITY.md](SECURITY.md)
 
