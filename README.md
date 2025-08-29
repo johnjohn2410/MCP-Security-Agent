@@ -2,7 +2,7 @@
 
 An intelligent, agentic AI security scanner built on the Model Context Protocol (MCP) that actively scans for vulnerabilities and provides automated security analysis.
 
-## 🚀 2-Minute Quickstart
+## 2-Minute Quickstart
 
 ### 1. Install & Setup
 ```bash
@@ -39,7 +39,7 @@ node dist/index.js scan ./your-project --format html
 - Hardcoded secrets
 - Configuration issues
 
-## 🚀 Features
+## Features
 
 ### Core Security Scanning
 - **Code Vulnerability Analysis**: Detects security issues in source code
@@ -60,7 +60,7 @@ node dist/index.js scan ./your-project --format html
 - **Context-Aware Scanning**: Understands project context and architecture
 - **Continuous Monitoring**: Real-time security monitoring and alerting
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -75,7 +75,7 @@ node dist/index.js scan ./your-project --format html
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 🛠️ Installation
+## Installation
 
 ### Prerequisites
 - Node.js 18.0.0 or higher
@@ -98,7 +98,7 @@ cp env.example .env
 # Edit .env with your configuration
 ```
 
-## 🔧 Configuration
+## Configuration
 
 Create a `.env` file with the following variables:
 
@@ -124,7 +124,7 @@ ALLOWED_FILE_TYPES=js,ts,py,java,go,yml,yaml,json
 BLOCKED_PATTERNS=password,secret,key,token
 ```
 
-## 🚀 Usage
+## Usage
 
 ### Command Line Interface
 
@@ -197,7 +197,7 @@ npm start server
 # The agent will be available as security scanning tools
 ```
 
-## 📊 Output Formats
+## Output Formats
 
 The agent supports multiple output formats:
 
@@ -207,7 +207,7 @@ The agent supports multiple output formats:
 - **PDF**: Printable security report
 - **SARIF**: Standard format for CI/CD integration
 
-## 🔒 Security Features
+## Security Features
 
 ### Privacy & Data Protection
 - **Data Redaction**: Automatically redacts sensitive information
@@ -221,7 +221,7 @@ The agent supports multiple output formats:
 - **Dry-Run Mode**: Test policies before enforcement
 - **Policy Tracing**: Understand why rules were triggered
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run tests
@@ -231,7 +231,7 @@ npm test
 npm start scan ./examples --type comprehensive
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
@@ -250,18 +250,18 @@ npm test
 npm run lint
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## Support
 
 - **Documentation**: [docs/](docs/)
 - **Issues**: [GitHub Issues](https://github.com/your-org/mcp-security-agent/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-org/mcp-security-agent/discussions)
 - **Security**: [SECURITY.md](SECURITY.md)
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Advanced AI analysis with multiple models
 - [ ] Real-time monitoring and alerting
@@ -270,7 +270,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Container and Kubernetes security
 - [ ] Compliance reporting (SOC 2, ISO 27001, PCI)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built on the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
 - Inspired by modern security scanning tools
