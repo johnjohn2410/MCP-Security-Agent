@@ -9,7 +9,7 @@
 
 > **Topics**: `mcp` `security` `ai-security` `mcp-security` `mcp-server` `agentic-ai` `vulnerability-scanner` `code-analysis` `dependency-scanning` `secret-detection`
 
-An intelligent, agentic AI security scanner built on the Model Context Protocol (MCP) that actively scans for vulnerabilities and provides automated security analysis.
+The first end-to-end MCP security companion with enterprise-grade hardening, trust verification, and AI-powered threat detection for ChatGPT/Claude hosts.
 
 ## 2-Minute Quickstart
 
@@ -67,7 +67,7 @@ mcp-security-agent scan ./your-project --format html
 - Hardcoded secrets
 - Configuration issues
 
-### 4. MCP Security Hardening (Enterprise)
+### 4. Enterprise MCP Security Hardening
 ```bash
 # Apply MCP hardened security policy
 mcp-security-agent mcp --policy mcp-hardened
@@ -89,7 +89,17 @@ mcp-security-agent trust --list
 mcp-security-agent trust --add server.com --pubkey KEY --sha256 DIGEST --version 1.0.0
 ```
 
+
+
 ## Features
+
+### Enterprise MCP Security Hardening
+- **MCP Configuration Validation**: Defensive-by-default security checks for authentication, TLS, CORS/CSP, rate limiting, quotas, sandboxing, and stdio security
+- **Schema Compliance**: JSON Schema validation for all MCP envelopes, protocol drift prevention, payload size limits, and JSON-only mode enforcement
+- **Trust & Provenance**: Cryptographic signature verification, public key pinning, allow/deny lists, and mandatory trust checks with SLSA/cosign attestation support
+- **AI-Powered Threat Detection**: Advanced prompt injection classification, response sanitization, suspicious directive detection, and ML-based anomaly detection
+- **Sandboxing & Isolation**: Container and process isolation, resource limits, read-only filesystems, capability dropping, and seccomp/AppArmor profiles
+- **Compliance & Governance**: Enterprise compliance reporting, audit trails, SBOM generation, VEX documents, and comprehensive security posture assessment
 
 ### Core Security Scanning
 - **Code Vulnerability Analysis**: Detects security issues in source code
@@ -110,13 +120,7 @@ mcp-security-agent trust --add server.com --pubkey KEY --sha256 DIGEST --version
 - **Context-Aware Scanning**: Understands project context and architecture
 - **Continuous Monitoring**: Real-time security monitoring and alerting
 
-### MCP Security Hardening (Enterprise-Grade)
-- **Trust Management**: Verify MCP servers with cryptographic signatures
-- **Response Sanitization**: Prevent prompt injection and malicious payloads
-- **Schema Validation**: Enforce MCP protocol compliance and prevent drift
-- **Configuration Hardening**: MCP-aware security policy enforcement
-- **Prompt Injection Detection**: AI-powered classification of suspicious content
-- **Sandboxing**: Container and process isolation for MCP servers
+
 
 ## Architecture
 
@@ -128,8 +132,14 @@ mcp-security-agent trust --add server.com --pubkey KEY --sha256 DIGEST --version
          │                       │                       │
          ▼                       ▼                       ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Policy        │    │   Tool          │    │   Vulnerability │
-│   Engine        │    │   Registry      │    │   Database      │
+│   Policy        │    │   Trust &       │    │   Vulnerability │
+│   Engine        │    │   Provenance    │    │   Database      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   MCP Security  │    │   Response      │    │   Compliance    │
+│   Hardening     │    │   Sanitizer     │    │   & Governance  │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
@@ -251,6 +261,20 @@ scan <path>                    # Scan a directory or file
   --include <patterns>        # File patterns to include
   --exclude <patterns>        # File patterns to exclude
 
+# Enterprise MCP Security Hardening
+mcp --policy mcp-hardened     # Apply MCP hardened security policy
+mcp --config-template         # Generate hardened configuration template
+mcp --compliance              # Check compliance status
+mcp --validate <file>         # Validate MCP envelope against schema
+mcp --classify <content>      # Classify content for prompt injection
+
+# Trust Management
+trust --list                  # List trusted MCP servers
+trust --add <server>          # Add trusted server with pubkey/sha256/version
+trust --remove <server>       # Remove trusted server
+trust --allowlist <server>    # Add server to allowlist
+trust --denylist <server>     # Add server to denylist
+
 # Policy management
 policy --list                 # List all policies
 policy --add <file>           # Add policy from file
@@ -360,6 +384,13 @@ The agent supports multiple output formats:
 
 ## Security Features
 
+### Enterprise MCP Security Hardening
+- **MCP Configuration Validation**: Defensive-by-default security checks for authentication, TLS, CORS/CSP, rate limiting, quotas, sandboxing, and stdio security
+- **Schema Compliance**: JSON Schema validation for all MCP envelopes, protocol drift prevention, payload size limits, and JSON-only mode enforcement
+- **Trust & Provenance**: Cryptographic signature verification, public key pinning, allow/deny lists, and mandatory trust checks with SLSA/cosign attestation support
+- **AI-Powered Threat Detection**: Advanced prompt injection classification, response sanitization, suspicious directive detection, and ML-based anomaly detection
+- **Sandboxing & Isolation**: Container and process isolation, resource limits, read-only filesystems, capability dropping, and seccomp/AppArmor profiles
+
 ### Trust & Compliance
 - **SBOM Generation**: Automatic Software Bill of Materials in CycloneDX/SPDX format
 - **Signed Releases**: GitHub releases with signed artifacts and provenance
@@ -378,6 +409,47 @@ The agent supports multiple output formats:
 - **Dry-Run Mode**: Test policies before enforcement
 - **Policy Tracing**: Understand why rules were triggered
 
+## Enterprise Use Cases
+
+### ChatGPT/Claude Host Protection
+```bash
+# Apply MCP hardened security policy for AI assistant integration
+mcp-security-agent mcp --policy mcp-hardened
+
+# Verify trusted MCP servers before connection
+mcp-security-agent trust --add openai.com --pubkey KEY --sha256 DIGEST --version 1.0.0
+
+# Classify suspicious content for prompt injection
+mcp-security-agent mcp --classify "ignore previous instructions"
+
+# Validate MCP envelope compliance
+mcp-security-agent mcp --validate envelope.json
+```
+
+### DevOps & CI/CD Security
+```bash
+# Comprehensive security scanning in CI/CD
+mcp-security-agent scan . --type comprehensive --format sarif
+
+# Generate compliance report for audits
+mcp-security-agent mcp --compliance
+
+# Create hardened configuration template
+mcp-security-agent mcp --config-template > mcp-hardened-config.json
+```
+
+### Enterprise Compliance
+```bash
+# Generate SBOM for supply chain security
+mcp-security-agent scan . --generate-sbom
+
+# Audit trail and compliance reporting
+mcp-security-agent scan . --audit-log --compliance-report
+
+# Policy enforcement and governance
+mcp-security-agent policy --enforce --dry-run
+```
+
 ## Testing
 
 ```bash
@@ -386,6 +458,9 @@ npm test
 
 # Test with example vulnerable code
 mcp-security-agent scan ./examples --type comprehensive
+
+# Test MCP security hardening
+mcp-security-agent mcp --policy mcp-hardened --test
 ```
 
 ## Contributing
