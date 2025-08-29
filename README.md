@@ -9,6 +9,14 @@ An intelligent, agentic AI security scanner built on the Model Context Protocol 
 
 ## 2-Minute Quickstart
 
+### 📦 Available on npm
+**Install the MCP Security Agent from npm:**
+```bash
+npm install -g mcp-security-agent
+```
+
+**Package: [mcp-security-agent on npm](https://www.npmjs.com/package/mcp-security-agent)**
+
 ### 1. Install & Setup
 
 **Option A: npm (Recommended)**
@@ -322,6 +330,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
+- **npm Package**: [mcp-security-agent on npm](https://www.npmjs.com/package/mcp-security-agent)
 - **Documentation**: [docs/](docs/)
 - **Issues**: [GitHub Issues](https://github.com/johnjohn2410/MCP-Security-Agent/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/johnjohn2410/MCP-Security-Agent/discussions)
